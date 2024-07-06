@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ThemeProvider, CssBaseline, Box, useMediaQuery, AppBar } from '@mui/material';
-
 import { createTheme } from '@mui/material/styles';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
@@ -25,7 +24,7 @@ function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
 
-  React.useEffect(() => {
+  useEffect(() => {
     setIsSidebarOpen(!isSmallScreen);
   }, [isSmallScreen]);
 
@@ -67,6 +66,7 @@ function App() {
               setSelectedMenu(menu);
               if (isSmallScreen) setIsSidebarOpen(false);
             }}
+            onClose={() => setIsSidebarOpen(false)} // Close the sidebar when an item is selected on small screens
           />
           <Box 
             component="main" 
